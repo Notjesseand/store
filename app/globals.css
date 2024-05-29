@@ -84,18 +84,22 @@
   overflow-y: hidden;
 } */
 
-
 .gradient-text {
   color: transparent;
   background: conic-gradient(
-    #D9D7F1 12%, 
-    #BAABDA 12%, #BAABDA 33%, 
-    #E7FBBE 33%, #E7FBBE 55%, 
-    #FFCBCB 55%, #FFCBCB 70%, 
-    #B5DEFF 70%, #B5DEFF 87%, 
-    #F7D1BA 87%);
+    #d9d7f1 12%,
+    #baabda 12%,
+    #baabda 33%,
+    #e7fbbe 33%,
+    #e7fbbe 55%,
+    #ffcbcb 55%,
+    #ffcbcb 70%,
+    #b5deff 70%,
+    #b5deff 87%,
+    #f7d1ba 87%
+  );
   background-size: 50%;
-  background-clip: text;  
+  background-clip: text;
   -webkit-background-clip: text;
 
   animation: expand-rev 0.5s ease forwards;

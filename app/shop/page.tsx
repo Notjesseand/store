@@ -7,12 +7,12 @@ import { Items } from "@/components/shop/data";
 import Carousel from "@/components/shop/carousel";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
-import { fetchData } from "@/api/fetchAll";
+import { fetchAll } from "@/api/fetchAll";
 
 const Page = () => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
   const { toast } = useToast();
- 
+
   const variant = {
     hidden: { opacity: 0, y: 250 },
     visible: { opacity: 1, y: 0 },
@@ -77,12 +77,6 @@ const Page = () => {
     const item = cart.find((cartItem: any) => cartItem.id === id);
     return item ? item.quantity : 0;
   };
-
-  useEffect(() => {
-    fetchData();
-
-    return () => {};
-  }, []);
 
   return (
     <div className="">

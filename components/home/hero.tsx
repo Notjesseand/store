@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import useOnScreen from "@/hooks/scroll";
+import { TbTruckDelivery } from "react-icons/tb";
+import { RiRefund2Fill } from "react-icons/ri";
 
 const Hero = () => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
@@ -31,7 +33,9 @@ const Hero = () => {
           <p className="text-5xl sm:text-7xl lg:text-8xl font-bold px-6 sm:px-10 md:px-16">
             Thuggers Store
           </p>
-          <p className="px-6 sm:px-10 md:px-16 text-2xl mt-5 ml-5 font-montserrat">Your home for everything</p>
+          <p className="px-6 sm:px-10 md:px-16 text-2xl mt-5 ml-5 font-montserrat">
+            Your home for everything
+          </p>
         </motion.div>
 
         <div className="sm:flex mt-5">
@@ -44,11 +48,7 @@ const Hero = () => {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center px-5 sm:px-10 lg:px-16">
-              <img
-                src="https://res.cloudinary.com/dv62ty87r/image/upload/v1716662545/Screenshot_2024-05-25_134035-removebg-preview_wl6h8s.png"
-                alt=""
-                className="h-20"
-              />
+              <TbTruckDelivery className="h-20 text-5xl" />
               <p className="font-montserrat text-xl sm:text-2xl sm:font-semibold">
                 Home Delivery
               </p>
@@ -64,11 +64,7 @@ const Hero = () => {
             transition={{ duration: 1 }}
           >
             <div className="flex items-center px-5 sm:px-10 lg:px-16">
-              <img
-                src="https://res.cloudinary.com/dv62ty87r/image/upload/v1716663000/Screenshot_2024-05-25_134901-removebg-preview_hyswbb.png"
-                alt=""
-                className="h-20"
-              />
+              <RiRefund2Fill className="h-20 text-5xl" />
               <p className="font-montserrat text-xl sm:text-2xl sm:font-semibold">
                 Fully Refundable*
               </p>

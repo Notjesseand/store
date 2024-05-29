@@ -1,12 +1,12 @@
 import axios from "axios";
 
-export async function fetchAll() {
-  const url = `https://dummyjson.com/products/`;
+export async function fetchData(item:string) {
+  const url = `https://dummyjson.com/products/category/${item}`;
 
   try {
     const res = await axios.get(url);
 
-    if (res.status !== 200) {
+    if (res.status!==200) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
