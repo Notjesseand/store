@@ -4,6 +4,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
 import Link from "next/link";
+import { LiaShippingFastSolid } from "react-icons/lia";
 
 interface Product {
   id: number;
@@ -21,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   console.log("data in child component", product);
   return (
     <div>
-      <div className="h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer w-11/12 bg-cover bg-center border-2 relative ">
+      <Link href={`/products/${product.id}`} className="h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer w-11/12 bg-cover bg-center border-2 relative ">
         <div
           // src={product.thumbnail}
           style={{ backgroundImage: `url(${product?.images[0]})` }}
@@ -57,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
           </div>
         </div>
-      </div>
+      </Link>
       <div className="w-4/5 mx-auto  text-center justify-center pt-2">
         <Link
           href={`/products/${product.id}`}

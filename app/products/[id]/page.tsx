@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import { fetchData } from "@/api/fetch";
 import Rating from "@/components/rating";
 import Link from "next/link";
+import { LiaShippingFastSolid } from "react-icons/lia";
+import Footer from "@/components/Footer";
 
 const Page = ({ params }: { params: any }) => {
   const [data, setData] = useState<any>(null);
@@ -31,7 +33,7 @@ const Page = ({ params }: { params: any }) => {
 
   return (
     <div>
-      <div className="bg-[#eee] min-h-[45vh] ">
+      <div className="bg-[#eee] min-h-[45vh]">
         {/* @ts-ignore */}
         <Header />
         <div className="pt-44 pl-5 md:pl-24">
@@ -48,10 +50,10 @@ const Page = ({ params }: { params: any }) => {
         </div>
       </div>
       {/*  */}
-      <div className="grid grid-cols-12 pt-7">
+      <div className="md:grid md:grid-cols-12 px-3 sm:px-7  lg:px-0 pt-7">
         {/* image */}
-        <div className="col-span-5">
-          <div className="h-96 w-5/6 flex mx-auto">
+        <div className="md:col-span-5 w-full">
+          <div className="lg:h-96 w-5/6 flex mx-auto">
             <img
               src={data.images[0]}
               alt=""
@@ -69,7 +71,7 @@ const Page = ({ params }: { params: any }) => {
               ${data.price}
             </p>
             {/* rating */}
-            <div className="flex items-center">
+            <div className="flex items-center pb-1">
               <Rating rating={data.rating} />
               <span className="text-slate-600 font-semibold ml-2">
                 {data.rating} {"("}
@@ -78,16 +80,37 @@ const Page = ({ params }: { params: any }) => {
               </span>
             </div>
           </div>
-            {/* overview */}
-            <div>
-              <p className="text-lg pt-6 font-semibold font-montserrat">Overview:</p>
-              <p className="text-slate-500 mt-3">{data.description}</p>
+          {/* overview */}
+          <div>
+            <p className="text-lg pt-6 font-semibold font-montserrat">
+              Overview:
+            </p>
+            <p className="text-slate-500 mt-3">{data.description}</p>
+            <p className="flex items-center space-x-2 text-slate-500 mt-5">
+              <span className="font-semibold font-montserrat">
+                {data.shippingInformation}
+              </span>{" "}
+              <LiaShippingFastSolid className="text-2xl text-orange-500" />
+            </p>
+            {/* warranty information */}
+            <p className="text-orange-500 font-montserrat">
+              {data.warrantyInformation}*
+            </p>
+            <p className="text-slate-500 ">{data.returnPolicy}</p>
+          </div>
+          {/* shop now and add to cart */}
+          <div className="pt-4 space-x-2 justify-center flex sm:inline-block sm:space-x-4">
+            <button className="px-8 py-2 font-semibold hover:bg-white hover:text-orange-500 border-2 border-orange-500  bg-orange-500 rounded-lg text-white font-montserrat">
+              Shop Now
+            </button>
 
-            </div>
-
-            shop now
+            <button className="px-8 py-2 font-semibold bg-white text-orange-500 border-2 border-orange-500  hover:bg-orange-500 rounded-lg hover:text-white font-montserrat">
+              Add to cart
+            </button>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
