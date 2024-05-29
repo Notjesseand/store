@@ -2,6 +2,7 @@ import React from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoBookmarkOutline } from "react-icons/io5";
+import { IoStar } from "react-icons/io5";
 
 interface Product {
   id: number;
@@ -9,6 +10,7 @@ interface Product {
   price: number;
   thumbnail: string;
   images: string;
+  rating: number;
   // Add other fields as necessary
 }
 interface ProductCardProps {
@@ -23,11 +25,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           // src={product.thumbnail}
           style={{ backgroundImage: `url(${product?.images[0]})` }}
           // alt=""
-          className="absolute h-full w-full rounded-lg z-10 hover:-z-10 transition-all duration-100 bg-cover bg-center bg-white"
+          className="absolute h-full w-full rounded-lg z-10 hover:-z-10 transition-all duration-100 bg-contain bg-no-repeat bg-center bg-white"
         />
 
         {/* like view bookmark */}
-        <div className="absolute w-full h-full z-0 hover:z-30 bg-transparent">
+        <div className="absolute w-full h-full hover:h-[90%] transition-all duration-500 z-0 hover:z-30 bg-transparent ">
           <div className="relative h-full w-full flex flex-col justify-between ">
             <div className="justify-end flex flex-col items-end space-y-3 pr-3  text-black pt-4 transition-all duration-100">
               {/* like */}
@@ -44,7 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               </div>
             </div>
             {/* add to cart button */}
-            <div className=" flex flex-col justify-center space-y-3 text-black pt-4 transition-all duration-300 w-full px-[7%] pb-3">
+            <div className=" flex flex-col justify-center space-y-3 text-black pt-4 transition-all pb-3 duration-300 w-full px-[7%]">
               <button className=" w-full bg-black text-white mx-auto relative rounded-lg py-2.5 ">
                 Add to cart
               </button>
@@ -59,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             : product.title}
         </p>
         <p className="text-center flex text-lg justify-center mt-2">
-          ${product.price}
+          ${product.price.toLocaleString()}
         </p>
       </div>
     </div>

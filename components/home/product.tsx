@@ -12,11 +12,7 @@ const Product = () => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
   const [ref2, isVisible2] = useOnScreen({ threshold: 0.01 });
   const [ref3, isVisible3] = useOnScreen({ threshold: 0.01 });
-  const [ref4, isVisible4] = useOnScreen({ threshold: 0.01 });
-  const [ref5, isVisible5] = useOnScreen({ threshold: 0.01 });
-  const [ref6, isVisible6] = useOnScreen({ threshold: 0.01 });
-  const [ref7, isVisible7] = useOnScreen({ threshold: 0.01 });
-  const [ref8, isVisible8] = useOnScreen({ threshold: 0.01 });
+
   const variants = {
     hidden: { opacity: 0, x: 250 },
     visible: { opacity: 1, x: 0 },
