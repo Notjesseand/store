@@ -7,7 +7,6 @@ import Innovations from "@/components/home/innovations";
 import Hero from "@/components/home/hero";
 import Experts from "@/components/home/experts";
 import Footer from "@/components/Footer";
-import image from "@/public/1.jpg";
 import { fetchAll } from "@/api/fetchAll";
 
 export default function Page() {

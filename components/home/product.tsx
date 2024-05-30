@@ -38,7 +38,9 @@ const Product = () => {
       <p className="text-2xl text-center font-montserrat font-semibold p">
         New Arrival Products
       </p>
-      <p className="text-slate-400 font-custom text-center text-lg pt-1">Shop the latest products from the most popular collections</p>
+      <p className="text-slate-400 font-custom text-center text-lg pt-1">
+        Shop the latest products from the most popular collections
+      </p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-y-6 px-1.5  md:px-12 lg:px-20 pt-9">
         {products &&
           products.map((product, index) => (

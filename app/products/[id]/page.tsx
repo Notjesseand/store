@@ -7,10 +7,12 @@ import Link from "next/link";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { IoPerson } from "react-icons/io5";
 import Footer from "@/components/Footer";
+import Image from "next/image";
+import { Spinner } from "@material-tailwind/react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Page = ({ params }: { params: any }) => {
   const [data, setData] = useState<any>(null);
-
   useEffect(() => {
     const getData = async () => {
       const response = await fetchData(params.id);
@@ -18,11 +20,44 @@ const Page = ({ params }: { params: any }) => {
         setData(response);
       }
     };
-
     getData();
   }, [params.id]);
 
-  console.log(data);
+  // format date
+  const formatDate = (isoDate: any) => {
+    const date = new Date(isoDate);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  // handling form input submission
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    comment: "",
+  });
+
+  const handleChange = (event: any) => {
+    const { name, value } = event.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const [loading, setLoading] = useState(false);
+  const handleSubmit = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setFormValues({ name: "", email: "", comment: "" });
+      setLoading(false);
+      toast({
+        title: "Review added",
+      });
+    }, 3000);
+  };
+
+  const { toast } = useToast();
 
   if (!data) {
     return (
@@ -31,16 +66,6 @@ const Page = ({ params }: { params: any }) => {
       </div>
     );
   }
-
-  // format date
-  const formatDate = (isoDate:any) => {
-    const date = new Date(isoDate);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
 
   return (
     <div>
@@ -68,9 +93,13 @@ const Page = ({ params }: { params: any }) => {
         {/* image */}
         <div className="md:col-span-5 w-full">
           <div className="lg:h-96 w-5/6 flex mx-auto">
-            <img
+            <Image
               src={data.images[0]}
               alt=""
+              layout="responsive"
+              objectFit="cover"
+              height={100}
+              width={100}
               className="h-full w-auto flex mx-auto"
             />
           </div>
@@ -143,6 +172,48 @@ const Page = ({ params }: { params: any }) => {
                 </div>
               </div>
             ))}
+            {/* leave a comment */}
+            <div className="w-full p-2  bg-slate-white border-2 border-slate-300 rounded-lg mt-3 font-montserrat sm:pt-3 sm:px-3">
+              <p className="sm:text-lg font-montserrat font-semibold">
+                Leave a Review
+              </p>{" "}
+              {/* form */}
+              <div className="">
+                <div className="inline sm:flex w-full gap-5">
+                  {/* name */}
+                  <input
+                    type="text"
+                    name="name"
+                    value={formValues.name}
+                    onChange={handleChange}
+                    placeholder="name"
+                    className="w-full sm:w-1/2 rounded-lg py-1.5 px-2 outline-none border-2 border-slate-300 mt-3 flex"
+                  />
+                  {/* email */}
+                  <input
+                    type="email"
+                    name="email"
+                    value={formValues.email}
+                    onChange={handleChange}
+                    placeholder="email"
+                    className="w-full sm:w-1/2 rounded-lg py-1.5 px-2 outline-none border-2 border-slate-300 mt-3 flex"
+                  />
+                </div>
+                <textarea
+                  value={formValues.comment}
+                  name="comment"
+                  onChange={handleChange}
+                  placeholder="leave a comment"
+                  className="w-full rounded-lg min-h-[120px] px-2 outline-none border-2 border-slate-300 mt-3 flex"
+                />
+                <button
+                  onClick={handleSubmit}
+                  className="bg-black py-3  text-white font-semibold w-full mt-3 rounded-lg"
+                >
+                  {loading ? <Spinner className=" flex mx-auto" /> : "Submit"}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
