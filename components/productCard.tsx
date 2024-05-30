@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   console.log("data in child component", product);
   return (
     <div>
-      <Link href={`/products/${product.id}`} className="h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer w-11/12 bg-cover bg-center border-2 relative ">
+      <Link href={`/products/${product.id}`} className=" h-56  sm:h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer  w-11/12 bg-cover bg-center border-2 relative ">
         <div
           // src={product.thumbnail}
           style={{ backgroundImage: `url(${product?.images[0]})` }}
@@ -31,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         />
 
         {/* like view bookmark */}
-        <div className="absolute w-full h-full hover:pb-5 hover:z-30 bg-transparent transition-all hover:duration-500 ">
+        <div className="absolute w-full h-full z-30 hover:pb-5 lg:z-10 hover:z-30 bg-transparent transition-all hover:duration-500 ">
           <div className="relative h-full w-full flex flex-col justify-between ">
             <div className="justify-end flex flex-col items-end space-y-1 pr-3  text-black pt-4">
               {/* like */}
@@ -52,7 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
             {/* add to cart button */}
             <div className=" flex flex-col justify-center space-y-3 text-black pt-4 w-full px-[7%]">
-              <button className=" w-full bg-black text-white mx-auto relative rounded-lg py-2.5">
+              <button className=" w-full bg-black text-white mx-auto relative rounded-lg py-2.5 text-sm sm:text-base">
                 Add to cart
               </button>
             </div>
