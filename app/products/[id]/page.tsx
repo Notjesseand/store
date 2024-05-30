@@ -5,6 +5,7 @@ import { fetchData } from "@/api/fetch";
 import Rating from "@/components/rating";
 import Link from "next/link";
 import { LiaShippingFastSolid } from "react-icons/lia";
+import { IoPerson } from "react-icons/io5";
 import Footer from "@/components/Footer";
 
 const Page = ({ params }: { params: any }) => {
@@ -30,6 +31,16 @@ const Page = ({ params }: { params: any }) => {
       </div>
     );
   }
+
+  // format date
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   return (
     <div>
@@ -62,7 +73,7 @@ const Page = ({ params }: { params: any }) => {
           </div>
         </div>
         {/* description */}
-        <div className="col-span-7 pr-5">
+        <div className="col-span-7 md:pr-5">
           {/* title */}
           <p className="text-2xl font-semibold">{data.title}</p>
           <div className="flex space-x-5 pt-1">
@@ -99,14 +110,36 @@ const Page = ({ params }: { params: any }) => {
             <p className="text-slate-500 ">{data.returnPolicy}</p>
           </div>
           {/* shop now and add to cart */}
-          <div className="pt-4 space-x-2 justify-center flex sm:inline-block sm:space-x-4">
-            <button className="px-8 py-2 font-semibold hover:bg-white hover:text-orange-500 border-2 border-orange-500  bg-orange-500 rounded-lg text-white font-montserrat">
+          <div className="pt-4 space-x-2 justify-center flex sm:inline-block sm:space-x-4 w-full md:w-auto">
+            <button className="sm:px-8 w-1/2 sm:w-auto py-2 font-semibold hover:bg-white hover:text-orange-500 border-2 border-orange-500  bg-orange-500 rounded-lg text-white font-montserrat">
               Shop Now
             </button>
 
-            <button className="px-8 py-2 font-semibold bg-white text-orange-500 border-2 border-orange-500  hover:bg-orange-500 rounded-lg hover:text-white font-montserrat">
+            <button className="sm:px-8 w-1/2 sm:w-auto  py-2 font-semibold bg-white text-orange-500 border-2 border-orange-500  hover:bg-orange-500 rounded-lg hover:text-white font-montserrat">
               Add to cart
             </button>
+          </div>
+
+          {/* reviews */}
+          <p className="mt-10">Reviews</p>
+          <div className="w-full mt-2 sm:mt-4 border-2 rounded space-y-4 p-4">
+            {/* comment card */}
+            {data.reviews.map((item: any, index: number) => (
+              <div>
+                {/* user info */}
+                <div className="flex gap-2 font-montserrat">
+                  <IoPerson className="text-5xl p-1 border-2 border-slate-400 rounded-full" />
+                  <div className=" flex flex-col justify-center leading-4">
+                    <p className="font-bold text-lg">{item.reviewerName}</p>
+                    <p className="text-sm">{formatDate(item.date)}</p>
+                  </div>
+                </div>
+                {/* comment */}
+                <div className="w-full min-h-[5rem] p-2  bg-slate-100 rounded-lg mt-3">
+                  {item.comment}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
