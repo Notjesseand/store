@@ -31,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         />
 
         {/* like view bookmark */}
-        <div className="absolute w-full h-full z-30 pb-5 lg:pb-0 lg:hover:pb-5 lg:z-auto  hover:z-30 bg-transparent transition-all hover:duration-500 ">
+        <div className="absolute w-full h-full z-30 pb-2 sm:pb-5 lg:pb-0 lg:hover:pb-5 lg:z-auto  hover:z-30 bg-transparent transition-all hover:duration-500 ">
           <div className="relative h-full w-full flex flex-col justify-between ">
             <div className="justify-end flex flex-col items-end space-y-1 pr-3  text-black pt-4">
               {/* like */}
