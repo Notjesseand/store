@@ -11,9 +11,17 @@ import Image from "next/image";
 import { Spinner } from "@material-tailwind/react";
 import { useToast } from "@/components/ui/use-toast";
 import { fetchAll } from "@/api/fetchAll";
-import ProductCard from "@/components/productCard";
 import Carousel from "@/components/carousel";
 
+interface CartItem {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  images: string;
+  rating: number;
+  quantity: number;
+}
 const Page = ({ params }: { params: any }) => {
   const [data, setData] = useState<any>(null);
   useEffect(() => {
@@ -61,13 +69,43 @@ const Page = ({ params }: { params: any }) => {
     }, 3000);
   };
 
-  const [newArrivals, setNewArrivals] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const data = await fetchAll();
-      setNewArrivals(data?.products);
-    })();
-  }, []);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const addToCart = (newItem: any) => {
+    setCart((prevCart: any) => {
+      const itemInCart = prevCart.find(
+        (cartItem: any) => cartItem.id === newItem.id
+      );
+
+      if (itemInCart) {
+        return prevCart.map((cartItem: any) =>
+          cartItem.id === newItem.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      } else {
+        return [...prevCart, { ...newItem, quantity: 1 }];
+      }
+    });
+    toast({
+      title: "Added to Cart",
+      //  "Friday, February 10, 2023 at 5:57 PM",
+    });
+  };
+
+  const getTotalItemCount = () => {
+    // @ts-ignore
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  // total quantity of all items in the cart
+  const totalCount = getTotalItemCount();
+
+  const getItemQuantity = (id: any) => {
+    const item = cart.find((cartItem: any) => cartItem.id === id);
+    return item ? item.quantity : 0;
+  };
+
+  console.log("main cart bu", cart);
 
   if (!data) {
     return (
@@ -80,7 +118,7 @@ const Page = ({ params }: { params: any }) => {
     <div>
       <div className="bg-[#eee] sm:min-h-[45vh]">
         {/* @ts-ignore */}
-        <Header />
+        <Header count={totalCount} cart={cart} />
         <div className="pt-44 pl-5 md:pl-24 pb-16">
           <p className="text-xl sm:text-3xl text-black  font-semibold">
             {" "}
@@ -102,13 +140,9 @@ const Page = ({ params }: { params: any }) => {
         {/* image */}
         <div className="md:col-span-5 w-full">
           <div className="lg:h-96 w-5/6 flex mx-auto">
-            <Image
+            <img
               src={data.images[0]}
               alt=""
-              layout="responsive"
-              objectFit="cover"
-              height={100}
-              width={100}
               className="h-full w-auto flex mx-auto"
             />
           </div>
@@ -156,7 +190,10 @@ const Page = ({ params }: { params: any }) => {
               Shop Now
             </button>
 
-            <button className="sm:px-8 w-1/2 sm:w-auto  py-2 font-semibold bg-white text-orange-500 border-2 border-orange-500  hover:bg-orange-500 rounded-lg hover:text-white font-montserrat">
+            <button
+              onClick={() => addToCart(data)}
+              className="sm:px-8 w-1/2 sm:w-auto  py-2 font-semibold bg-white text-orange-500 border-2 border-orange-500  hover:bg-orange-500 rounded-lg hover:text-white font-montserrat"
+            >
               Add to cart
             </button>
           </div>
@@ -228,7 +265,7 @@ const Page = ({ params }: { params: any }) => {
       </div>
       {/* new arrivals */}
       <div className=" pt-20 sm:py-20 sm:px-10">
-        <p className="text-center text-3xl font-montserrat font-semibold sm:pt-10">
+        <p className="text-center text-2xl sm:text-3xl font-montserrat font-semibold sm:pt-10">
           New arrivals
         </p>
 

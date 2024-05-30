@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
 import Link from "next/link";
 import { LiaShippingFastSolid } from "react-icons/lia";
+import { useToast } from "./ui/use-toast";
 
 interface Product {
   id: number;
@@ -18,11 +19,34 @@ interface ProductCardProps {
   product: Product;
 }
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  console.log("data in child component", product);
+  const [cart, setCart] = useState([]);
+  const { toast } = useToast();
+  const addToCart = (newItem: any) => {
+    setCart((prevCart: any) => {
+      const itemInCart = prevCart.find(
+        (cartItem: any) => cartItem.id === newItem.id
+      );
+
+      if (itemInCart) {
+        return prevCart.map((cartItem: any) =>
+          cartItem.id === newItem.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      } else {
+        return [...prevCart, { ...newItem, quantity: 1 }];
+      }
+    });
+    toast({
+      title: "Added to Cart",
+      //  "Friday, February 10, 2023 at 5:57 PM",
+    });
+  };
+
   return (
     <div>
-      <Link
-        href={`/products/${product.id}`}
+      <div
+        // href={`/products/${product.id}`}
         className=" aspect-[2/3] h-full sm:h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer  w-11/12 bg-cover bg-center border-2 relative "
       >
         <div
@@ -54,13 +78,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
             {/* add to cart button */}
             <div className=" flex flex-col justify-center space-y-3 text-black pt-4 w-full px-[7%]">
-              <button className=" w-full bg-black text-white mx-auto relative rounded-lg py-2.5 text-sm sm:text-base">
+              <button
+                onClick={addToCart}
+                className=" w-full bg-black text-white mx-auto relative rounded-lg py-2.5 text-sm sm:text-base"
+              >
                 Add to cart
               </button>
             </div>
           </div>
         </div>
-      </Link>
+      </div>
       <div className="w-4/5 mx-auto  text-center justify-center pt-2">
         <Link
           href={`/products/${product.id}`}

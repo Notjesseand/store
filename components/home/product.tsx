@@ -31,8 +31,6 @@ const Product = () => {
     })();
   }, []);
 
-  console.log("kayife bu data", products);
-
   return (
     <div className="min-h-screen flex flex-col justify-center w-full pt-24">
       <p className="text-2xl text-center font-montserrat font-semibold p">

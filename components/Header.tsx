@@ -7,7 +7,7 @@ import Cart from "./shop/cart";
 const Header = ({ count, cart }: { count: number; cart: any[] }) => {
   const totalCount = count;
   const carti = cart;
-  
+
 
   return (
     <div className="flex w-full fixed z-50">

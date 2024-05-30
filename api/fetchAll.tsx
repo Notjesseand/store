@@ -11,7 +11,6 @@ export async function fetchAll() {
     }
 
     const data = res.data;
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
