@@ -125,7 +125,7 @@ const Page = ({ params }: { params: any }) => {
           <div className="w-full mt-2 sm:mt-4 border-2 rounded space-y-4 p-4">
             {/* comment card */}
             {data.reviews.map((item: any, index: number) => (
-              <div>
+              <div key={index}>
                 {/* user info */}
                 <div className="flex gap-2 font-montserrat">
                   <IoPerson className="text-5xl p-1 border-2 border-slate-400 rounded-full" />
