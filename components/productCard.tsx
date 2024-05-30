@@ -64,7 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="w-4/5 mx-auto  text-center justify-center pt-2">
         <Link
           href={`/products/${product.id}`}
-          className="text-center flex md:text-lg justify-center hover:text-orange-600"
+          className="text-center flex  justify-center hover:text-orange-600"
         >
           {product.title.length > 20
             ? product.title.slice(0, 24) + "..."
