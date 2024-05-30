@@ -69,8 +69,6 @@ const Page = ({ params }: { params: any }) => {
     })();
   }, []);
 
-  console.log("new arriavls", newArrivals);
-
   if (!data) {
     return (
       <div className="flex justify-center flex-col items-center h-screen ">
@@ -198,7 +196,7 @@ const Page = ({ params }: { params: any }) => {
                     value={formValues.name}
                     onChange={handleChange}
                     placeholder="name"
-                    className="w-full sm:w-1/2 rounded-lg py-1.5 px-2 outline-none border-2 border-slate-300 mt-3 flex"
+                    className="w-full sm:w-1/2 rounded-lg py-2 px-2 outline-none border-2 border-slate-300 mt-3 flex"
                   />
                   {/* email */}
                   <input
@@ -207,7 +205,7 @@ const Page = ({ params }: { params: any }) => {
                     value={formValues.email}
                     onChange={handleChange}
                     placeholder="email"
-                    className="w-full sm:w-1/2 rounded-lg py-1.5 px-2 outline-none border-2 border-slate-300 mt-3 flex"
+                    className="w-full sm:w-1/2 rounded-lg py-2 px-2 outline-none border-2 border-slate-300 mt-3 flex"
                   />
                 </div>
                 <textarea
