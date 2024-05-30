@@ -10,6 +10,9 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import { Spinner } from "@material-tailwind/react";
 import { useToast } from "@/components/ui/use-toast";
+import { fetchAll } from "@/api/fetchAll";
+import ProductCard from "@/components/productCard";
+import Carousel from "@/components/carousel";
 
 const Page = ({ params }: { params: any }) => {
   const [data, setData] = useState<any>(null);
@@ -45,6 +48,7 @@ const Page = ({ params }: { params: any }) => {
     setFormValues({ ...formValues, [name]: value });
   };
 
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const handleSubmit = () => {
     setLoading(true);
@@ -57,7 +61,15 @@ const Page = ({ params }: { params: any }) => {
     }, 3000);
   };
 
-  const { toast } = useToast();
+  const [newArrivals, setNewArrivals] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const data = await fetchAll();
+      setNewArrivals(data?.products);
+    })();
+  }, []);
+
+  console.log("new arriavls", newArrivals);
 
   if (!data) {
     return (
@@ -66,7 +78,6 @@ const Page = ({ params }: { params: any }) => {
       </div>
     );
   }
-
   return (
     <div>
       <div className="bg-[#eee] sm:min-h-[45vh]">
@@ -216,6 +227,14 @@ const Page = ({ params }: { params: any }) => {
             </div>
           </div>
         </div>
+      </div>
+      {/* new arrivals */}
+      <div className=" pt-20 sm:py-20 sm:px-10">
+        <p className="text-center text-3xl font-montserrat font-semibold sm:pt-10">
+          New arrivals
+        </p>
+
+        <Carousel />
       </div>
       <Footer />
     </div>

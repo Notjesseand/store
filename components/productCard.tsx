@@ -37,18 +37,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="relative h-full w-full flex flex-col justify-between ">
             <div className="justify-end flex flex-col items-end space-y-1 pr-3  text-black pt-4">
               {/* like */}
-              <div className=" bg-white rounded-full aspect-square p-2 flex h-10 flex-col w-10 justify-center items-center border border-slate-500">
-                <IoMdHeartEmpty className="text-xl cursor-pointer font-bold" />
+              <div className=" bg-white  hover:bg-black hover:text-white rounded-full aspect-square p-2 flex h-10 flex-col w-10 justify-center items-center border border-slate-500">
+                <IoMdHeartEmpty className="text-xl cursor-pointer font-bold transition-all duration-200" />
               </div>
               {/* view */}
               <Link
                 href={`/products/${product.id}`}
-                className=" bg-white rounded-full aspect-square p-2 flex flex-col justify-center items-center h-10 w-10 border border-slate-500"
+                className=" bg-white hover:bg-black hover:text-white transition-all duration-200 rounded-full aspect-square p-2 flex flex-col justify-center items-center h-10 w-10 border border-slate-500"
               >
                 <IoEyeOutline className="text-xl cursor-pointer" />
               </Link>
               {/* bookmark */}
-              <div className=" bg-white rounded-full aspect-square p-2 flex flex-col justify-center items-center h-10 w-10 border border-slate-500">
+              <div className="hover:bg-black hover:text-white transition-all duration-200 bg-white rounded-full aspect-square p-2 flex flex-col justify-center items-center h-10 w-10 border border-slate-500">
                 <IoBookmarkOutline className="text-xl cursor-pointer" />
               </div>
             </div>
