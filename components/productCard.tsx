@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   console.log("data in child component", product);
   return (
     <div>
-      <Link href={`/products/${product.id}`} className=" h-56  sm:h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer  w-11/12 bg-cover bg-center border-2 relative ">
+      <Link href={`/products/${product.id}`} className=" h-60 sm:h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer  w-11/12 bg-cover bg-center border-2 relative ">
         <div
           // src={product.thumbnail}
           style={{ backgroundImage: `url(${product?.images[0]})` }}
@@ -31,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         />
 
         {/* like view bookmark */}
-        <div className="absolute w-full h-full z-30 hover:pb-5 lg:z-10 hover:z-30 bg-transparent transition-all hover:duration-500 ">
+        <div className="absolute w-full h-full z-30 pb-5 lg:pb-0 lg:hover:pb-5 lg:z-auto  hover:z-30 bg-transparent transition-all hover:duration-500 ">
           <div className="relative h-full w-full flex flex-col justify-between ">
             <div className="justify-end flex flex-col items-end space-y-1 pr-3  text-black pt-4">
               {/* like */}
