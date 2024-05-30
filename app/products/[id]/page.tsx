@@ -44,13 +44,16 @@ const Page = ({ params }: { params: any }) => {
 
   return (
     <div>
-      <div className="bg-[#eee] min-h-[45vh]">
+      <div className="bg-[#eee] sm:min-h-[45vh]">
         {/* @ts-ignore */}
         <Header />
-        <div className="pt-44 pl-5 md:pl-24">
-          <p className="text-3xl text-black  font-semibold"> {data.title}</p>
+        <div className="pt-44 pl-5 md:pl-24 pb-16">
+          <p className="text-xl sm:text-3xl text-black  font-semibold">
+            {" "}
+            {data.title}
+          </p>
 
-          <div className="flex space-x-2 text-lg font-montserrat font-semibold pt-3">
+          <div className="flex space-x-2 text-sm sm:text-lg font-montserrat font-semibold pt-3">
             {" "}
             <Link href="/">Thugger</Link> <span> {">"} </span>{" "}
             <span>Store</span> <span> {">"} </span>{" "}
