@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   console.log("data in child component", product);
   return (
     <div>
-      <Link href={`/products/${product.id}`} className=" h-60 sm:h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer  w-11/12 bg-cover bg-center border-2 relative ">
+      <Link href={`/products/${product.id}`} className=" aspect-[2/3] h-full sm:h-64 md:h-72 lg:h-96 rounded-lg flex flex-col mx-auto cursor-pointer  w-11/12 bg-cover bg-center border-2 relative ">
         <div
           // src={product.thumbnail}
           style={{ backgroundImage: `url(${product?.images[0]})` }}
