@@ -33,7 +33,7 @@ const Page = ({ params }: { params: any }) => {
   }
 
   // format date
-  const formatDate = (isoDate) => {
+  const formatDate = (isoDate:any) => {
     const date = new Date(isoDate);
     return date.toLocaleDateString("en-US", {
       year: "numeric",
