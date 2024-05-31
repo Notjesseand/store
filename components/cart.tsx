@@ -12,13 +12,19 @@ import Link from "next/link";
 import { IoCartOutline } from "react-icons/io5";
 import Carousel from "@/components/shop/carousel";
 
-const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
+const Cart = ({
+  count,
+  cart,
+  clearCart,
+}: {
+  count: any;
+  cart: any[];
+  clearCart: any;
+}) => {
   const cartData = cart.map((item) => item.price * item.quantity);
   const totalPrice = cartData.reduce((acc, price) => acc + price, 0);
 
   console.log(totalPrice);
-
-  const clearCart = () => localStorage.setItem("cart", "");
 
   return (
     <div className="overflow-visible ">

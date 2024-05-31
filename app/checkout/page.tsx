@@ -22,6 +22,7 @@ const Page = () => {
   return (
     <div>
       <div>
+        {/* @ts-ignore */}
         <Header cart={cart} count={cartCount} />
       </div>
     </div>

@@ -4,7 +4,15 @@ import { HiBars2 } from "react-icons/hi2";
 import Sidebar from "./Sidebar";
 import Cart from "@/components/cart";
 
-const Header = ({ count, cart }: { count: number; cart: any[] }) => {
+const Header = ({
+  count,
+  cart,
+  clearCart,
+}: {
+  count: number;
+  cart: any[];
+  clearCart: any;
+}) => {
   const totalCount = count;
   const carti = cart;
 
@@ -23,7 +31,11 @@ const Header = ({ count, cart }: { count: number; cart: any[] }) => {
           </Link>
 
           <div className="flex items-center gap-3">
-            {totalCount > 0 ? <Cart count={totalCount} cart={carti} /> : ""}
+            {totalCount > 0 ? (
+              <Cart count={totalCount} cart={carti} clearCart={clearCart} />
+            ) : (
+              ""
+            )}
 
             <Sidebar />
           </div>
