@@ -53,7 +53,10 @@ const Page = () => {
 
         {cart &&
           cart.map((item, index) => (
-            <div className="grid grid-cols-5 sm:grid-cols-7 font-montserrat text-sm gap-1 sm:text-lg p-4 rounded">
+            <div
+              key={index}
+              className="grid grid-cols-5 sm:grid-cols-7 font-montserrat text-sm gap-1 sm:text-lg p-4 rounded"
+            >
               <p className="col-span-2 sm:col-span-4">{item.title}</p>
               <p className="col-span-">${item.price}</p>
               <p className="text-center">{item.quantity}</p>
