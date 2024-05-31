@@ -42,7 +42,7 @@ const Page = () => {
         </div>
       </div>
       {/* table section */}
-      <div className="pt-20 px-0 sm:px-14 lg:px-36">
+      <div className="pt-8 sm:pt-20 px-0 sm:px-14 lg:px-36">
         <div className="grid grid-cols-5 sm:grid-cols-7 bg-slate-50 font-montserrat font-semibold gap-1 text-sm sm:text-lg p-4 rounded">
           <p className="col-span-2 sm:col-span-4">Product</p>
           <p className="">Price</p>
@@ -66,7 +66,7 @@ const Page = () => {
             </div>
           ))}
       </div>
-      <button className="bg-black text-white py-2 px-20 rounded flex mx-auto mt-10">
+      <button className="bg-black text-white py-2 sm:py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center">
         Pay Now
       </button>
     </div>
