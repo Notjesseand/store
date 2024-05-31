@@ -2,12 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { HiBars2 } from "react-icons/hi2";
 import Sidebar from "./Sidebar";
-import Cart from "./shop/cart";
+import Cart from "@/components/cart";
 
 const Header = ({ count, cart }: { count: number; cart: any[] }) => {
   const totalCount = count;
   const carti = cart;
-
 
   return (
     <div className="flex w-full fixed z-50">

@@ -10,7 +10,7 @@ import {
 import { HiBars2 } from "react-icons/hi2";
 import Link from "next/link";
 import { IoCartOutline } from "react-icons/io5";
-import Carousel from "./carousel";
+import Carousel from "@/components/shop/carousel";
 
 const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
   const cartData = cart.map((item) => item.price * item.quantity);
@@ -49,10 +49,12 @@ const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
                 </div>
               ))}
 
-              <div>
-                <p className="text-center mt-7">subtotal: ${totalPrice}</p>
+              <div className="pb-10">
+                <p className="text-center mt-12">
+                  subtotal: ${parseFloat(totalPrice.toFixed(2))}
+                </p>
 
-                <button className="py-1.5 px-6 border mt-1 border-blue-700 hover:border-white bg-blue-700 text-white text-sm rounded-full mx-auto flex">
+                <button className="py-2 px-6 border border-blue-700 hover:border-white bg-black text-white text-sm rounded-full mx-auto flex mt-3">
                   Checkout
                 </button>
               </div>
