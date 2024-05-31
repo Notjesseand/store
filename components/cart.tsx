@@ -33,9 +33,7 @@ const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
         <SheetContent className="h-screen overflow-y-scroll">
           <SheetHeader>
             <div className="w-full space-y-3 pt-6 ">
-              <p className="text-center text-lg gradient-text font-semibold">
-                In your cart
-              </p>
+              <p className="text-center text-lg font-semibold">In your cart</p>
               {cart.map((item, index) => (
                 <div key={index} className="text-center flex flex-col">
                   <div className="w-1/3 mx-auto">

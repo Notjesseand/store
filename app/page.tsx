@@ -16,23 +16,6 @@ interface CartItem extends Product {
 export default function Page() {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // const handleAddToCart = (product: any) => {
-  //   setCart((prevCart: any) => {
-  //     const itemInCart = prevCart.find(
-  //       (cartItem: any) => cartItem.id === product.id
-  //     );
-
-  //     if (itemInCart) {
-  //       return prevCart.map((cartItem: any) =>
-  //         cartItem.id === product.id
-  //           ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
-  //           : cartItem
-  //       );
-  //     } else {
-  //       return [...prevCart, { ...product, quantity: 1 }];
-  //     }
-  //   });
-  // };
   const handleAddToCart = (product: Product) => {
     setCart((prevCart: any) => {
       const itemInCart = prevCart.find(

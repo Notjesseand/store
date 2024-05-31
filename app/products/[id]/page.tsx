@@ -70,27 +70,6 @@ const Page = ({ params }: { params: any }) => {
   };
 
   const [cart, setCart] = useState<CartItem[]>([]);
-  // const addToCart = (newItem: any) => {
-  //   setCart((prevCart: any) => {
-  //     const itemInCart = prevCart.find(
-  //       (cartItem: any) => cartItem.id === newItem.id
-  //     );
-
-  //     if (itemInCart) {
-  //       return prevCart.map((cartItem: any) =>
-  //         cartItem.id === newItem.id
-  //           ? { ...cartItem, quantity: cartItem.quantity + 1 }
-  //           : cartItem
-  //       );
-  //     } else {
-  //       return [...prevCart, { ...newItem, quantity: 1 }];
-  //     }
-  //   });
-  //   toast({
-  //     title: "Added to Cart",
-  //     //  "Friday, February 10, 2023 at 5:57 PM",
-  //   });
-  // };
 
   const addToCart = (product: any) => {
     setCart((prevCart: any) => {
@@ -122,12 +101,12 @@ const Page = ({ params }: { params: any }) => {
   };
 
   // total quantity of all items in the cart
-  const totalCount = getTotalItemCount();
+  // const totalCount = getTotalItemCount();
 
-  const getItemQuantity = (id: any) => {
-    const item = cart.find((cartItem: any) => cartItem.id === id);
-    return item ? item.quantity : 0;
-  };
+  // const getItemQuantity = (id: any) => {
+  //   const item = cart.find((cartItem: any) => cartItem.id === id);
+  //   return item ? item.quantity : 0;
+  // };
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -135,6 +114,26 @@ const Page = ({ params }: { params: any }) => {
       setCart(JSON.parse(savedCart));
     }
   }, []);
+
+  // total quantity of all items in the cart
+  const totalCount = getTotalItemCount();
+
+  const getItemQuantity = (id: any) => {
+    const item = cart.find((cartItem: any) => cartItem.id === id);
+    return item ? item.quantity : 0;
+  };
+
+  const removeFromCart = (itemToRemove: any) => {
+    setCart((prevCart: any) =>
+      prevCart
+        .map((item: any) =>
+          item.id === itemToRemove.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item: any) => item.quantity > 0)
+    );
+  };
 
   if (!data) {
     return (
@@ -214,19 +213,40 @@ const Page = ({ params }: { params: any }) => {
             <p className="text-slate-500 ">{data.returnPolicy}</p>
           </div>
           {/* shop now and add to cart */}
-          <div className="pt-4 space-x-2 justify-center flex sm:inline-block sm:space-x-4 w-full md:w-auto">
-            <button className="sm:px-8 w-1/2 sm:w-auto py-2 font-semibold hover:bg-white hover:text-orange-500 border-2 border-orange-500  bg-orange-500 rounded-lg text-white font-montserrat">
-              Shop Now
-            </button>
+          <div className="w-full md:w-auto">
+            <div className="pt-4 space-x-2 justify-center flex sm:inline-block sm:space-x-0 w-full md:w-auto">
+              <div className="flex space-x-2">
+                <button className="sm:px-8 w-1/2 sm:w-auto py-2 font-semibold hover:bg-white hover:text-orange-500 border-2 border-orange-500  bg-orange-500 rounded-lg text-white font-montserrat">
+                  Shop Now
+                </button>
 
-            <button
-              onClick={() => addToCart(data)}
-              className="sm:px-8 w-1/2 sm:w-auto  py-2 font-semibold bg-white text-orange-500 border-2 border-orange-500  hover:bg-orange-500 rounded-lg hover:text-white font-montserrat"
-            >
-              Add to cart
-            </button>
+                <button
+                  onClick={() => addToCart(data)}
+                  className="sm:px-8 w-1/2 sm:w-auto  py-2 font-semibold bg-white text-orange-500 border-2 border-orange-500  hover:bg-orange-500 rounded-lg hover:text-white font-montserrat"
+                >
+                  Add to cart
+                </button>
+              </div>
+              {/* add and remove buttons */}
+              <div className="flex mx-auto justify-center pt-2">
+                <button
+                  className="border border-slate-500 rounded-[100%] h-8 w-8 text-2xl text-slate-500 flex flex-col justify-center items-center"
+                  onClick={() => removeFromCart(data)}
+                >
+                  -
+                </button>{" "}
+                <span className="px-5 flex flex-col justify-center text-xl">
+                  {getItemQuantity(data.id)}
+                </span>{" "}
+                <button
+                  onClick={() => addToCart(data)}
+                  className="border border-slate-500 rounded-[100%] h-8 w-8 text-2xl flex flex-col justify-center items-center text-slate-500"
+                >
+                  +
+                </button>
+              </div>
+            </div>
           </div>
-
           {/* reviews */}
           <p className="mt-10">Reviews</p>
           <div className="w-full mt-2 sm:mt-4 border-2 rounded space-y-4 p-4">
