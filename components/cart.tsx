@@ -38,7 +38,7 @@ const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
               <p className="text-center text-lg font-semibold">In your cart</p>
               {cart.map((item, index) => (
                 <div key={index} className="text-center flex flex-col">
-                  <div className="w-1/3 mx-auto">
+                  <div className="w-1/3 mx-auto aspect-square bg-pink-300">
                     <Carousel images={item.images} />
                     <p className="mt-1">×{item.quantity}</p>
                   </div>
