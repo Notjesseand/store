@@ -18,6 +18,8 @@ const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
 
   console.log(totalPrice);
 
+  const clearCart = () => localStorage.setItem("cart", "");
+
   return (
     <div className="overflow-visible ">
       <Sheet>
@@ -54,6 +56,13 @@ const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
 
                 <button className="py-2 px-6 border border-blue-700 hover:border-white bg-black text-white text-sm rounded-full mx-auto flex mt-3">
                   Checkout
+                </button>
+
+                <button
+                  onClick={clearCart}
+                  className="py-2 px-6 border border-blue-700 hover:border-white bg-black text-white text-sm rounded-full mx-auto flex mt-3"
+                >
+                  Clear cart
                 </button>
               </div>
             </div>

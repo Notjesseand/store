@@ -228,7 +228,7 @@ const Page = ({ params }: { params: any }) => {
                 </button>
               </div>
               {/* add and remove buttons */}
-              <div className="flex mx-auto justify-center pt-2">
+              <div className="flex mx-auto justify-center pt-4 sm:pt-3">
                 <button
                   className="border border-slate-500 rounded-[100%] h-8 w-8 text-2xl text-slate-500 flex flex-col justify-center items-center"
                   onClick={() => removeFromCart(data)}

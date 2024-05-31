@@ -35,9 +35,6 @@ export default function Page() {
 
       return updatedCart;
     });
-    // toast({
-    //   title: "Added to Cart",
-    // });
   };
 
   useEffect(() => {
