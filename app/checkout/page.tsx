@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Product from "@/components/home/product";
 import Link from "next/link";
+import Carousel from "@/components/carousel";
+import Footer from "@/components/Footer";
+import { useToast } from "@/components/ui/use-toast";
 
 interface CartItem extends Product {
   quantity: number;
@@ -23,8 +26,65 @@ const Page = () => {
     setCart([]);
   };
 
+  const { toast } = useToast();
+  const addToCart = (product: any) => {
+    setCart((prevCart: any) => {
+      const itemInCart = prevCart.find(
+        (cartItem: any) => cartItem.id === product.id
+      );
+
+      const updatedCart = itemInCart
+        ? prevCart.map((cartItem: any) =>
+            cartItem.id === product.id
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
+          )
+        : [...prevCart, { ...product, quantity: 1 }];
+
+      // Save to localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      return updatedCart;
+    });
+    toast({
+      title: "Added to Cart",
+    });
+  };
+
+  const getTotalItemCount = () => {
+    // @ts-ignore
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // total quantity of all items in the cart
+  const totalCount = getTotalItemCount();
+
+  const getItemQuantity = (id: any) => {
+    const item = cart.find((cartItem: any) => cartItem.id === id);
+    return item ? item.quantity : 0;
+  };
+
+  const removeFromCart = (itemToRemove: any) => {
+    setCart((prevCart: any) =>
+      prevCart
+        .map((item: any) =>
+          item.id === itemToRemove.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item: any) => item.quantity > 0)
+    );
+  };
+
   return (
-    <div className="pb-20">
+    <div className="">
       <div className="bg-slate-50 sm:min-h-[45vh]">
         <Header count={cartCount} cart={cart} clearCart={clearCart} />
         <div className="pt-44 pl-5 md:pl-24 pb-16">
@@ -43,12 +103,14 @@ const Page = () => {
       </div>
       {/* table section */}
       <div className="pt-8 sm:pt-20 px-0 sm:px-14 lg:px-36">
-        <div className="grid grid-cols-5 sm:grid-cols-7 bg-slate-50 font-montserrat font-semibold gap-1 text-sm sm:text-lg p-4 rounded">
-          <p className="col-span-2 sm:col-span-4">Product</p>
-          <p className="">Price</p>
-          <p className="text-center">Quantity</p>
-          <p className="text-center">Total{"($)"}</p>
-        </div>
+        {cart.length > 0 && (
+          <div className="grid grid-cols-5 sm:grid-cols-7 bg-slate-50 font-montserrat font-semibold gap-1 text-sm sm:text-lg p-4 rounded">
+            <p className="col-span-2 sm:col-span-4">Product</p>
+            <p className="">Price</p>
+            <p className="text-center">Quantity</p>
+            <p className="text-center">Total{"($)"}</p>
+          </div>
+        )}
         {/* data */}
 
         {cart &&
@@ -66,9 +128,20 @@ const Page = () => {
             </div>
           ))}
       </div>
-      <button className="bg-black text-white py-2 sm:py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center">
-        Pay Now
-      </button>
+      {cart.length > 0 && (
+        <button className="bg-black text-white py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center">
+          Pay Now
+        </button>
+      )}
+
+      {/* {cart.length == 0 && ( */}
+      <div className="px-5 sm:px-20 pt-36">
+        <p className="text-center">Add items to your cart</p>
+        {/* @ts-ignore */}
+        <Carousel product={""} onAddToCart={addToCart} />
+      </div>
+      {/* )} */}
+      <Footer />
     </div>
   );
 };

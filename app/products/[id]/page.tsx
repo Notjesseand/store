@@ -100,14 +100,6 @@ const Page = ({ params }: { params: any }) => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  // total quantity of all items in the cart
-  // const totalCount = getTotalItemCount();
-
-  // const getItemQuantity = (id: any) => {
-  //   const item = cart.find((cartItem: any) => cartItem.id === id);
-  //   return item ? item.quantity : 0;
-  // };
-
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
