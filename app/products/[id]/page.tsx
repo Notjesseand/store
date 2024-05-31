@@ -269,7 +269,7 @@ const Page = ({ params }: { params: any }) => {
           New arrivals
         </p>
 
-        <Carousel />
+        <Carousel product={data} onAddToCart={addToCart} />
       </div>
       <Footer />
     </div>

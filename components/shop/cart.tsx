@@ -43,7 +43,7 @@ const Cart = ({ count, cart }: { count: any; cart: any[] }) => {
                     <p className="mt-1">×{item.quantity}</p>
                   </div>
                   <div>
-                    <p>{item.name}</p>
+                    <p>{item.title}</p>
                     <p>${item.price}</p>
                   </div>
                 </div>

@@ -12,7 +12,21 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { fetchAll } from "@/api/fetchAll";
 import ProductCard from "./productCard";
 
-const Carousel = () => {
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  images: string;
+  rating: number;
+}
+
+interface ProductCardProps {
+  product: Product;
+  onAddToCart: (product: Product) => void;
+}
+
+const Carousel: React.FC<ProductCardProps> = ({ onAddToCart }) => {
   const [newArrivals, setNewArrivals] = useState([]);
   useEffect(() => {
     (async () => {
@@ -50,7 +64,7 @@ const Carousel = () => {
       {newArrivals &&
         newArrivals.map((product: any, index: number) => (
           <SwiperSlide key={index} className="w-full flex">
-            <ProductCard product={product} />
+            <ProductCard product={product} onAddToCart={onAddToCart} />
           </SwiperSlide>
         ))}
     </Swiper>

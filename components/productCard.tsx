@@ -17,32 +17,18 @@ interface Product {
 }
 interface ProductCardProps {
   product: Product;
+  onAddToCart: (product: Product) => void;
 }
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [cart, setCart] = useState([]);
+const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   const { toast } = useToast();
-  const addToCart = (newItem: any) => {
-    setCart((prevCart: any) => {
-      const itemInCart = prevCart.find(
-        (cartItem: any) => cartItem.id === newItem.id
-      );
 
-      if (itemInCart) {
-        return prevCart.map((cartItem: any) =>
-          cartItem.id === newItem.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      } else {
-        return [...prevCart, { ...newItem, quantity: 1 }];
-      }
-    });
+  const handleAddToCart = () => {
+    onAddToCart(product);
     toast({
       title: "Added to Cart",
-      //  "Friday, February 10, 2023 at 5:57 PM",
+      // Additional toast properties
     });
   };
-
   return (
     <div>
       <div
@@ -79,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {/* add to cart button */}
             <div className=" flex flex-col justify-center space-y-3 text-black pt-4 w-full px-[7%]">
               <button
-                onClick={addToCart}
+                onClick={handleAddToCart}
                 className=" w-full bg-black text-white mx-auto relative rounded-lg py-2.5 text-sm sm:text-base"
               >
                 Add to cart

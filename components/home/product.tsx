@@ -7,22 +7,24 @@ import { varianty } from "@/hooks/variant";
 import Link from "next/link";
 import ProductCard from "@/components/productCard";
 import { fetchAll } from "@/api/fetchAll";
+import { useToast } from "../ui/use-toast";
 
-const Product = () => {
-  const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
-  const [ref2, isVisible2] = useOnScreen({ threshold: 0.01 });
-  const [ref3, isVisible3] = useOnScreen({ threshold: 0.01 });
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  images: string;
+  rating: number;
+  // quantity: any;
+}
+interface ProductProps {
+  onAddToCart: (product: Product) => void;
+}
 
-  const variants = {
-    hidden: { opacity: 0, x: 250 },
-    visible: { opacity: 1, x: 0 },
-  };
-  const variant2 = {
-    hidden: { opacity: 0, y: 250 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const [products, setProducts] = useState([]);
+const Product: React.FC<ProductProps> = ({ onAddToCart }) => {
+  const { toast } = useToast();
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -30,6 +32,8 @@ const Product = () => {
       setProducts(data?.products);
     })();
   }, []);
+
+  const [cart, setCart] = useState([]);
 
   return (
     <div className="min-h-screen flex flex-col justify-center w-full pt-24">
@@ -42,7 +46,11 @@ const Product = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-y-6 px-1.5  md:px-12 lg:px-20 pt-9">
         {products &&
           products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard
+              key={index}
+              product={product}
+              onAddToCart={onAddToCart}
+            />
           ))}
       </div>
     </div>
