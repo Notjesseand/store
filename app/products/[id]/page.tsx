@@ -135,6 +135,11 @@ const Page = ({ params }: { params: any }) => {
     );
   };
 
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+
   if (!data) {
     return (
       <div className="flex justify-center flex-col items-center h-screen ">
@@ -145,8 +150,7 @@ const Page = ({ params }: { params: any }) => {
   return (
     <div>
       <div className="bg-[#eee] sm:min-h-[45vh]">
-        {/* @ts-ignore */}
-        <Header count={totalCount} cart={cart} />
+        <Header count={totalCount} cart={cart} clearCart={clearCart} />
         <div className="pt-44 pl-5 md:pl-24 pb-16">
           <p className="text-xl sm:text-3xl text-black  font-semibold">
             {" "}
