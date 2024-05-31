@@ -59,8 +59,6 @@ export default function Page() {
         <Hero />
       </div>
       <Product onAddToCart={handleAddToCart} />
-      {/* <Cart count={cartCount} cart={cart} clearCart={clearCart} /> */}
-
       <Footer />
     </div>
   );
