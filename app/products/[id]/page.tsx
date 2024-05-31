@@ -70,25 +70,49 @@ const Page = ({ params }: { params: any }) => {
   };
 
   const [cart, setCart] = useState<CartItem[]>([]);
-  const addToCart = (newItem: any) => {
+  // const addToCart = (newItem: any) => {
+  //   setCart((prevCart: any) => {
+  //     const itemInCart = prevCart.find(
+  //       (cartItem: any) => cartItem.id === newItem.id
+  //     );
+
+  //     if (itemInCart) {
+  //       return prevCart.map((cartItem: any) =>
+  //         cartItem.id === newItem.id
+  //           ? { ...cartItem, quantity: cartItem.quantity + 1 }
+  //           : cartItem
+  //       );
+  //     } else {
+  //       return [...prevCart, { ...newItem, quantity: 1 }];
+  //     }
+  //   });
+  //   toast({
+  //     title: "Added to Cart",
+  //     //  "Friday, February 10, 2023 at 5:57 PM",
+  //   });
+  // };
+
+  const addToCart = (product: any) => {
     setCart((prevCart: any) => {
       const itemInCart = prevCart.find(
-        (cartItem: any) => cartItem.id === newItem.id
+        (cartItem: any) => cartItem.id === product.id
       );
 
-      if (itemInCart) {
-        return prevCart.map((cartItem: any) =>
-          cartItem.id === newItem.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      } else {
-        return [...prevCart, { ...newItem, quantity: 1 }];
-      }
+      const updatedCart = itemInCart
+        ? prevCart.map((cartItem: any) =>
+            cartItem.id === product.id
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
+          )
+        : [...prevCart, { ...product, quantity: 1 }];
+
+      // Save to localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      return updatedCart;
     });
     toast({
       title: "Added to Cart",
-      //  "Friday, February 10, 2023 at 5:57 PM",
     });
   };
 
@@ -105,7 +129,12 @@ const Page = ({ params }: { params: any }) => {
     return item ? item.quantity : 0;
   };
 
-  console.log("main cart bu", cart);
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
 
   if (!data) {
     return (

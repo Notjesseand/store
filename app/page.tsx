@@ -16,23 +16,53 @@ interface CartItem extends Product {
 export default function Page() {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const handleAddToCart = (product: any) => {
+  // const handleAddToCart = (product: any) => {
+  //   setCart((prevCart: any) => {
+  //     const itemInCart = prevCart.find(
+  //       (cartItem: any) => cartItem.id === product.id
+  //     );
+
+  //     if (itemInCart) {
+  //       return prevCart.map((cartItem: any) =>
+  //         cartItem.id === product.id
+  //           ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
+  //           : cartItem
+  //       );
+  //     } else {
+  //       return [...prevCart, { ...product, quantity: 1 }];
+  //     }
+  //   });
+  // };
+  const handleAddToCart = (product: Product) => {
     setCart((prevCart: any) => {
       const itemInCart = prevCart.find(
         (cartItem: any) => cartItem.id === product.id
       );
 
-      if (itemInCart) {
-        return prevCart.map((cartItem: any) =>
-          cartItem.id === product.id
-            ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
-            : cartItem
-        );
-      } else {
-        return [...prevCart, { ...product, quantity: 1 }];
-      }
+      const updatedCart = itemInCart
+        ? prevCart.map((cartItem: any) =>
+            cartItem.id === product.id
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
+          )
+        : [...prevCart, { ...product, quantity: 1 }];
+
+      // Save to localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      return updatedCart;
     });
+    // toast({
+    //   title: "Added to Cart",
+    // });
   };
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
 
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
