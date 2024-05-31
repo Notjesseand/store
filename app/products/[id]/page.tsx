@@ -214,7 +214,7 @@ const Page = ({ params }: { params: any }) => {
           </div>
           {/* shop now and add to cart */}
           <div className="w-full md:w-auto">
-            <div className="pt-4 space-x-2 justify-center flex sm:inline-block sm:space-x-0 w-full md:w-auto">
+            <div className="pt-4 space-x-2 justify-center sm:inline-block sm:space-x-0 w-full md:w-auto">
               <div className="flex space-x-2">
                 <button className="sm:px-8 w-1/2 sm:w-auto py-2 font-semibold hover:bg-white hover:text-orange-500 border-2 border-orange-500  bg-orange-500 rounded-lg text-white font-montserrat">
                   Shop Now
