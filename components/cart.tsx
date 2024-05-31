@@ -11,6 +11,7 @@ import { HiBars2 } from "react-icons/hi2";
 import Link from "next/link";
 import { IoCartOutline } from "react-icons/io5";
 import Carousel from "@/components/shop/carousel";
+import { useToast } from "./ui/use-toast";
 
 const Cart = ({
   count,
@@ -24,7 +25,7 @@ const Cart = ({
   const cartData = cart.map((item) => item.price * item.quantity);
   const totalPrice = cartData.reduce((acc, price) => acc + price, 0);
 
-  console.log(totalPrice);
+  const { toast } = useToast();
 
   return (
     <div className="overflow-visible ">
@@ -65,7 +66,14 @@ const Cart = ({
                 </button>
 
                 <button
-                  onClick={clearCart}
+                  onClick={() => {
+                    clearCart();
+                    toast({
+                      title: "Cart Cleared",
+                      description: "Your cart has been cleared.",
+                      // Additional toast properties
+                    });
+                  }}
                   className="py-2 px-6 border border-blue-700 hover:border-white bg-black text-white text-sm rounded-full mx-auto flex mt-3"
                 >
                   Clear cart
