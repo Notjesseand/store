@@ -20,17 +20,7 @@ interface Product {
 }
 
 const Page = () => {
-  const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
   const { toast } = useToast();
-
-  const variant = {
-    hidden: { opacity: 0, y: 250 },
-    visible: { opacity: 1, y: 0 },
-  };
-  const variant2 = {
-    hidden: { opacity: 0, x: -250 },
-    visible: { opacity: 1, x: 0 },
-  };
 
   interface CartItem {
     id: number;
@@ -40,6 +30,13 @@ const Page = () => {
   }
 
   const [cart, setCart] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
 
   const [data, setData] = useState<Product[]>([]);
 
@@ -107,13 +104,17 @@ const Page = () => {
     return item ? item.quantity : 0;
   };
 
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+
   return (
     <div className="">
       <div className="bg-[url(https://res.cloudinary.com/dv62ty87r/image/upload/v1715771549/samples/landscapes/architecture-signs.jpg)] bg-cover bg-center h-72 sm:min-h-[50vh] relative">
         {/* overlay */}
         <div className="absolute h-full w-full bg-black inset-0 opacity-60"></div>
-        {/* @ts-ignore */}
-        <Header count={totalCount} cart={cart} />
+        <Header count={totalCount} cart={cart} clearCart={clearCart-} />
         <div className="pt-44 w-full relative">
           <div className="relative w-11/12 sm:w-2/3 mx-auto">
             <input
