@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
-import Product from "@/components/home/product";
 import Link from "next/link";
 import Carousel from "@/components/carousel";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
+import { Spinner } from "@material-tailwind/react";
 
 interface CartItem {
   quantity: number;
@@ -65,13 +65,6 @@ const Page = () => {
 
   const totalPrice = calculatePrice();
 
-  useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    }
-  }, []);
-
   // total quantity of all items in the cart
   const totalCount = getTotalItemCount();
 
@@ -90,6 +83,20 @@ const Page = () => {
         )
         .filter((item: any) => item.quantity > 0)
     );
+  };
+
+  // handle submit.
+  const [submitted, setSubmitted] = useState(false);
+  const handlePayment = () => {
+    setSubmitted(true);
+    setTimeout(() => {
+      toast({
+        title: "Payment successful",
+      });
+      localStorage.removeItem("cart");
+      setCart([]);
+      setSubmitted(false);
+    }, 4000);
   };
 
   return (
@@ -138,36 +145,41 @@ const Page = () => {
           ))}
       </div>
       {/* Totals */}
-      <div className="grid place-items-center text-center sm:text-lg font-nunito pt-14">
-        <div className="border rounded-lg w-11/12 sm:w-auto">
-          {/* subtotal */}
-          <div className="font-bold flex justify-between border px-5 py-2.5">
-            Subtotal:{" "}
-            <span className="text-slate-500 font-normal sm:pl-36">
-              ${totalPrice}
-            </span>{" "}
-          </div>
-          {/* taxes */}
-          <div className="font-bold flex justify-between border px-5 py-2.5">
-            Taxes:{" "}
-            <span className="text-slate-500 font-normal">
-              ${(totalPrice * (5 / 100)).toFixed(2)}
-            </span>{" "}
-          </div>
-          {/* total */}
+      {cart.length > 0 && (
+        <div className="grid place-items-center text-center sm:text-lg font-nunito pt-14">
+          <div className="border rounded-lg w-11/12 sm:w-[360px]">
+            {/* subtotal */}
+            <div className="font-bold flex justify-between border px-5 py-2.5">
+              Subtotal:{" "}
+              <span className="text-slate-500 font-normal">
+                ${totalPrice.toFixed(2)}
+              </span>{" "}
+            </div>
+            {/* taxes */}
+            <div className="font-bold flex justify-between border px-5 py-2.5">
+              Taxes:{" "}
+              <span className="text-slate-500 font-normal">
+                ${(totalPrice * (5 / 100)).toFixed(2)}
+              </span>{" "}
+            </div>
+            {/* total */}
 
-          <div className="font-bold flex justify-between border px-5 py-2.5">
-            Total:{" "}
-            <span className="text-slate-500 font-normal">
-              ${(totalPrice * 1.05).toFixed(2)}
-            </span>{" "}
+            <div className="font-bold flex justify-between border px-5 py-2.5">
+              Total:{" "}
+              <span className="text-slate-500 font-normal">
+                ${(totalPrice * 1.05).toFixed(2)}
+              </span>{" "}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {cart.length > 0 && (
-        <button className="bg-black text-white py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center">
-          Pay Now
+        <button
+          onClick={handlePayment}
+          className="bg-black text-white py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center"
+        >
+          {submitted ? <Spinner /> : "Pay Now"}
         </button>
       )}
 
