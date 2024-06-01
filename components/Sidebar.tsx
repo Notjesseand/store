@@ -27,8 +27,11 @@ const Sidebar = () => {
               <Link href="/shop" className="flex text-center justify-center">
                 Shop
               </Link>
-              <Link href="/about" className="flex text-center justify-center">
-                About Us
+              <Link
+                href="/checkout"
+                className="flex text-center justify-center"
+              >
+                Cart
               </Link>
               {/* <Link href="" className="flex text-center justify-center">News</Link> */}
               <Link href="/contact" className="flex text-center justify-center">
