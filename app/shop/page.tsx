@@ -47,7 +47,7 @@ const Page = () => {
 
   const getData = async () => {
     const response = await fetchData(`search?q=${searchQuery}`);
-    setData(response.products);
+    setData(response?.products);
   };
 
   useEffect(() => {
@@ -140,14 +140,25 @@ const Page = () => {
           </div>
         </div>
       </div>
-      {searchQuery && (
+
+      {searchQuery && data?.length > 0 && (
         <p className="font-nunito text-lg text-center pt-20">
           showing results for {searchQuery}
         </p>
       )}
+      {searchQuery !== "" && data?.length == 0 && (
+        <p className="font-nunito text-lg text-center pt-20">
+          no results for {searchQuery}
+        </p>
+      )}
+      {/* {searchQuery && (
+        <p className="font-nunito text-lg text-center pt-20">
+          showing results for {searchQuery}
+        </p>
+      )} */}
       {/* items */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-y-6 px-1.5  md:px-12 lg:px-20 pt-9">
-        {data.map((item: any, index: any) => (
+        {data?.map((item: any, index: any) => (
           <ProductCard key={index} product={item} onAddToCart={addToCart} />
         ))}
       </div>
