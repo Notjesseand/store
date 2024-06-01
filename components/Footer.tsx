@@ -67,7 +67,7 @@ const Footer = () => {
             name="email"
             placeholder="email"
             id=""
-            className="w-full border-2 border-orange-500 rounded-lg bg-[#1f2937] py-3 sm:py-1.5 px-1 mt-2"
+            className="w-full border-2 border-orange-500 rounded-lg bg-[#1f2937] py-3 sm:py-1.5 px-2 sm:px-1 mt-2"
           />
           <button className="w-full rounded-lg py-3 sm:py-1.5 text-[#fff] bg-orange-500">
             Subscribe
