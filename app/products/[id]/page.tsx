@@ -10,7 +10,6 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import { Spinner } from "@material-tailwind/react";
 import { useToast } from "@/components/ui/use-toast";
-import { fetchAll } from "@/api/fetchAll";
 import Carousel from "@/components/carousel";
 
 interface CartItem {

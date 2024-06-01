@@ -9,6 +9,7 @@ import Experts from "@/components/home/experts";
 import Footer from "@/components/Footer";
 import { fetchAll } from "@/api/fetchAll";
 import Cart from "@/components/cart";
+import Collections from "@/components/home/collections";
 
 interface CartItem extends Product {
   quantity: number;
@@ -58,6 +59,7 @@ export default function Page() {
         <Header count={cartCount} cart={cart} clearCart={clearCart} />
         <Hero />
       </div>
+      <Collections />
       <Product onAddToCart={handleAddToCart} />
       <Footer />
     </div>
