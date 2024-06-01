@@ -138,10 +138,10 @@ const Page = () => {
           ))}
       </div>
       {/* Totals */}
-      <div className="grid place-items-center text-center text-lg font-nunito pt-14">
-        <div className="border-2 rounded-lg w-11/12 sm:w-auto">
+      <div className="grid place-items-center text-center sm:text-lg font-nunito pt-14">
+        <div className="border rounded-lg w-11/12 sm:w-auto">
           {/* subtotal */}
-          <div className="font-bold px-5 flex justify-between  py-2.5">
+          <div className="font-bold flex justify-between border px-5 py-2.5">
             Subtotal:{" "}
             <span className="text-slate-500 font-normal sm:pl-36">
               ${totalPrice}
