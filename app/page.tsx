@@ -18,7 +18,8 @@ interface CartItem extends Product {
 export default function Page() {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const handleAddToCart = (product: Product) => {
+  // adding items to the cart
+  const addToCart = (product: Product) => {
     setCart((prevCart: any) => {
       const itemInCart = prevCart.find(
         (cartItem: any) => cartItem.id === product.id
@@ -60,7 +61,7 @@ export default function Page() {
         <Hero />
       </div>
       <Collections />
-      <Product onAddToCart={handleAddToCart} />
+      <Product onAddToCart={addToCart} />
       <Footer />
     </div>
   );
