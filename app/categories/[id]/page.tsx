@@ -109,7 +109,12 @@ const Page = ({ params }: { params: any }) => {
       </div>
       {/*  */}
       <p className="text-center text-xl py-14 font-montserrat font-semibold">
-        Browse out collection of {params.id.replace("-", " ")}
+        Browse our{" "}
+        <span className="text-orange-600 capitalize">
+          {" "}
+          {params.id.replace("-", " ")}
+        </span>{" "}
+        collection
       </p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-y-6 px-1.5  md:px-12 lg:px-20 pt-9">
         {data.map((product: any, index: any) => (

@@ -36,7 +36,7 @@ const Product: React.FC<ProductProps> = ({ onAddToCart }) => {
   const [cart, setCart] = useState([]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center w-full pt-24">
+    <div className="min-h-screen flex flex-col justify-center w-full  pt-14 sm:pt-24">
       <p className="text-2xl text-center font-montserrat font-semibold p">
         New Arrival Products
       </p>
