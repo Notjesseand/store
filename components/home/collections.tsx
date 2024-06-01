@@ -35,7 +35,7 @@ const Collections = () => {
           <Link
             key={index}
             href={`/categories/${item.slug}`}
-            className="py-1.5 px-1 bg-slate-100 mt-1 flex w-11/12 text-center justify-center rounded items-center border-2 border-orange-600 mx-auto font-nunito"
+            className="py-1.5 px-1 bg-slate-100 mt-1 flex w-11/12 text-center justify-center rounded items-center border-2 border-slate-300 mx-auto font-nunito"
           >
             {item.name}
           </Link>
