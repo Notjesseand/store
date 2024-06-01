@@ -177,15 +177,15 @@ const Page = () => {
       {cart.length > 0 && (
         <button
           onClick={handlePayment}
-          className="bg-black text-white py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center"
+          className="bg-black text-white py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center mb-36"
         >
           {submitted ? <Spinner /> : "Pay Now"}
         </button>
       )}
 
       {/* {cart.length == 0 && ( */}
-      <div className="px-5 sm:px-20 pt-36">
-        <p className="text-center">Add items to your cart</p>
+      <div className="px-5 sm:px-20 pt-1">
+        <p className="text-center sm:text-lg">Add items to your cart</p>
         {/* @ts-ignore */}
         <Carousel product={""} onAddToCart={addToCart} />
       </div>
