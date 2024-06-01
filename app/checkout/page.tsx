@@ -7,9 +7,12 @@ import Carousel from "@/components/carousel";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
 
-interface CartItem extends Product {
+interface CartItem {
   quantity: number;
+  price: number;
+  title: string;
 }
+
 const Page = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   // fetching the cart data from the local storage
@@ -55,6 +58,12 @@ const Page = () => {
     // @ts-ignore
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
+
+  // calculate the total price
+  const calculatePrice = () =>
+    cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const totalPrice = calculatePrice();
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -128,6 +137,34 @@ const Page = () => {
             </div>
           ))}
       </div>
+      {/* Totals */}
+      <div className="grid place-items-center text-center text-lg font-nunito pt-14">
+        <div className="border-2 rounded-lg w-11/12 sm:w-auto">
+          {/* subtotal */}
+          <div className="font-bold px-5 flex justify-between  py-2.5">
+            Subtotal:{" "}
+            <span className="text-slate-500 font-normal sm:pl-36">
+              ${totalPrice}
+            </span>{" "}
+          </div>
+          {/* taxes */}
+          <div className="font-bold flex justify-between border px-5 py-2.5">
+            Taxes:{" "}
+            <span className="text-slate-500 font-normal">
+              ${(totalPrice * (5 / 100)).toFixed(2)}
+            </span>{" "}
+          </div>
+          {/* total */}
+
+          <div className="font-bold flex justify-between border px-5 py-2.5">
+            Total:{" "}
+            <span className="text-slate-500 font-normal">
+              ${(totalPrice * 1.05).toFixed(2)}
+            </span>{" "}
+          </div>
+        </div>
+      </div>
+
       {cart.length > 0 && (
         <button className="bg-black text-white py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center">
           Pay Now
