@@ -116,7 +116,7 @@ const Page = ({ params }: { params: any }) => {
         </span>{" "}
         collection
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-y-6 px-1.5  md:px-12 lg:px-20 pt-9">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-y-6 px-1.5  md:px-12 lg:px-20 sm:pt-9">
         {data.map((product: any, index: any) => (
           <ProductCard key={index} product={product} onAddToCart={addToCart} />
         ))}

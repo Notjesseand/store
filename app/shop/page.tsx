@@ -7,7 +7,17 @@ import { Items } from "@/components/shop/data";
 import Carousel from "@/components/shop/carousel";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
-import { fetchAll } from "@/api/fetchAll";
+import { fetchData } from "@/api/fetch";
+import ProductCard from "@/components/productCard";
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  images: string[];
+  rating: number;
+}
 
 const Page = () => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
@@ -30,6 +40,25 @@ const Page = () => {
   }
 
   const [cart, setCart] = useState<CartItem[]>([]);
+
+  const [data, setData] = useState<Product[]>([]);
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const getData = async () => {
+    const response = await fetchData(`search?q=${searchQuery}`);
+    setData(response.products);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleSearch = (event: any) => {
+    setSearchQuery(event.target.value);
+    getData();
+  };
+  console.log(data);
 
   const addToCart = (newItem: any) => {
     setCart((prevCart: any) => {
@@ -85,66 +114,41 @@ const Page = () => {
         <div className="absolute h-full w-full bg-black inset-0 opacity-60"></div>
         {/* @ts-ignore */}
         <Header count={totalCount} cart={cart} />
-        <div className="pt-44 px-7 sm:px-24 relative">
-          <motion.div
-            // @ts-ignore
-            ref={ref}
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={variant2}
-            transition={{ duration: 1 }}
-          >
-            <p className="font-montserrat text-4xl sm:text-6xl text-white">
-              Shop
-            </p>
-          </motion.div>
+        <div className="pt-44 w-full relative">
+          <div className="relative w-11/12 sm:w-2/3 mx-auto">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearch}
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              placeholder="Search..."
+            />
+            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.9 14.32a8 8 0 111.41-1.41l4.3 4.3a1 1 0 01-1.42 1.42l-4.3-4.3zM8 14a6 6 0 100-12 6 6 0 000 12z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
         </div>
       </div>
-
+      {searchQuery && (
+        <p className="font-nunito text-lg text-center pt-20">
+          showing results for {searchQuery}
+        </p>
+      )}
       {/* items */}
-      <div className=" px-5 sm:px-12 md:px-20">
-        {Items.map((item, index) => (
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 mt-12 items-center gap-3 justify-center"
-            key={index}
-          >
-            <Carousel images={item.images} />
-
-            <div className="flex flex-col gap-2 col-span-2">
-              <p className="text-2xl ">{item.name}</p>
-              <p className="text-lg">${item.price}</p>
-              <p className="text-slate-600">{item.description}</p>
-
-              {/* add to cart */}
-              <div className="flex justify-center md:justify-start mt-3">
-                <div className="flex flex-col items-center">
-                  <div className="flex">
-                    <button
-                      className="border border-slate-500 rounded-[100%] h-8 w-8 text-2xl text-slate-500 flex flex-col justify-center items-center"
-                      onClick={() => removeFromCart(item)}
-                    >
-                      -
-                    </button>{" "}
-                    <span className="px-5 flex flex-col justify-center text-xl">
-                      {getItemQuantity(item.id)}
-                    </span>{" "}
-                    <button
-                      onClick={() => addToCart(item)}
-                      className="border border-slate-500 rounded-[100%] h-8 w-8 text-2xl flex flex-col justify-center items-center text-slate-500"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <button
-                    onClick={() => addToCart(item)}
-                    className="ml-2 font-montserrat text-center  md:text-left mt-1"
-                  >
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center gap-y-6 px-1.5  md:px-12 lg:px-20 pt-9">
+        {data.map((item: any, index: any) => (
+          <ProductCard key={index} product={item} onAddToCart={addToCart} />
         ))}
       </div>
       <Footer />
