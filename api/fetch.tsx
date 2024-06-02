@@ -4,13 +4,13 @@ export async function fetchData(item: any) {
   const url = `https://dummyjson.com/products/${item}`;
 
   try {
-    const res = await axios.get(url);
+    const res = await fetch(url, { cache: "force-cache" });
 
     if (res.status !== 200) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    const data = res.data;
+    const data = res.json();
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
