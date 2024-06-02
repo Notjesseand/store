@@ -7,7 +7,6 @@ import Innovations from "@/components/home/innovations";
 import Hero from "@/components/home/hero";
 import Experts from "@/components/home/experts";
 import Footer from "@/components/Footer";
-// import { fetchAll } from "@/api/fetchAll";
 import Cart from "@/components/cart";
 import Collections from "@/components/home/collections";
 
