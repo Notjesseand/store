@@ -96,7 +96,7 @@ const Page = () => {
       localStorage.removeItem("cart");
       setCart([]);
       setSubmitted(false);
-    }, 4000);
+    }, 3000);
   };
 
   return (
@@ -135,8 +135,10 @@ const Page = () => {
               key={index}
               className="grid grid-cols-5 sm:grid-cols-7 font-montserrat text-sm gap-1 sm:text-lg p-4 rounded"
             >
-              <p className="col-span-2 sm:col-span-4">{item.title}</p>
-              <p className="col-span-">${item.price}</p>
+              <p className="col-span-2 sm:col-span-4">
+                {item.title.toLocaleString()}
+              </p>
+              <p className="col-span-">${item.price.toLocaleString()}</p>
               <p className="text-center">{item.quantity}</p>
               <p className="text-center">
                 ${(item.price * item.quantity).toLocaleString()}
@@ -152,14 +154,14 @@ const Page = () => {
             <div className="font-bold flex justify-between border px-5 py-2.5">
               Subtotal:{" "}
               <span className="text-slate-500 font-normal">
-                ${totalPrice.toFixed(2)}
+                ${totalPrice.toLocaleString()}
               </span>{" "}
             </div>
             {/* taxes */}
             <div className="font-bold flex justify-between border px-5 py-2.5">
               Taxes:{" "}
               <span className="text-slate-500 font-normal">
-                ${(totalPrice * (5 / 100)).toFixed(2)}
+                ${parseFloat((totalPrice * 1.05).toFixed(2)).toLocaleString()}
               </span>{" "}
             </div>
             {/* total */}
@@ -167,7 +169,7 @@ const Page = () => {
             <div className="font-bold flex justify-between border px-5 py-2.5">
               Total:{" "}
               <span className="text-slate-500 font-normal">
-                ${(totalPrice * 1.05).toFixed(2)}
+                ${parseFloat((totalPrice * 1.05).toFixed(2)).toLocaleString()}
               </span>{" "}
             </div>
           </div>

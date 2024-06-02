@@ -51,14 +51,15 @@ const Cart = ({
                   </div>
                   <div>
                     <p>{item.title}</p>
-                    <p>${item.price}</p>
+                    <p>${item.price.toLocaleString()}</p>
                   </div>
                 </div>
               ))}
 
               <div className="pb-10">
                 <p className="text-center mt-12">
-                  subtotal: ${parseFloat(totalPrice.toFixed(2))}
+                  subtotal: $
+                  {parseFloat(totalPrice.toFixed(2)).toLocaleString()}
                 </p>
 
                 <div className="flex justify-center">
