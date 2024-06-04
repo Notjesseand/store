@@ -161,7 +161,7 @@ const Page = () => {
             <div className="font-bold flex justify-between border px-5 py-2.5">
               Taxes:{" "}
               <span className="text-slate-500 font-normal">
-                ${parseFloat((totalPrice * 1.05).toFixed(2)).toLocaleString()}
+                ${parseFloat((totalPrice * 0.05).toFixed(2)).toLocaleString()}
               </span>{" "}
             </div>
             {/* total */}
