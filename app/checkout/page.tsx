@@ -5,7 +5,7 @@ import Link from "next/link";
 import Carousel from "@/components/carousel";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
-import { Spinner } from "@material-tailwind/react";
+import { lineSpinner } from "ldrs";
 
 interface CartItem {
   quantity: number;
@@ -14,6 +14,7 @@ interface CartItem {
 }
 
 const Page = () => {
+  lineSpinner.register();
   const [cart, setCart] = useState<CartItem[]>([]);
   // fetching the cart data from the local storage
   useEffect(() => {
@@ -181,7 +182,16 @@ const Page = () => {
           onClick={handlePayment}
           className="bg-black text-white py-3 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 sm:px-36 rounded flex mx-auto mt-12 w-11/12 sm:w-auto text-center justify-center mb-36"
         >
-          {submitted ? <Spinner /> : "Pay Now"}
+          {submitted ? (
+            <l-line-spinner
+              size="30"
+              stroke="3"
+              speed="1"
+              color="#EA580C"
+            ></l-line-spinner>
+          ) : (
+            "Pay Now"
+          )}
         </button>
       )}
 
