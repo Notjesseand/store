@@ -38,7 +38,7 @@ const Product: React.FC<ProductProps> = ({ onAddToCart }) => {
   return (
     <div className="min-h-screen flex flex-col justify-center w-full  pt-14 sm:pt-24">
       <p className="text-2xl text-center font-montserrat font-semibold p">
-        New Arrival Products
+        New Arrivals
       </p>
       <p className="text-slate-400 font-custom text-center text-base sm:text-lg pt-1 px-10">
         Shop the latest products from the most popular collections
