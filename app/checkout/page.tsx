@@ -7,14 +7,19 @@ import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
 import { lineSpinner } from "ldrs";
 
+// Default values shown
+
+
 interface CartItem {
   quantity: number;
   price: number;
   title: string;
 }
+if (typeof window !== "undefined") {
+  lineSpinner.register();
+}
 
 const Page = () => {
-  lineSpinner.register();
   const [cart, setCart] = useState<CartItem[]>([]);
   // fetching the cart data from the local storage
   useEffect(() => {
@@ -187,7 +192,7 @@ const Page = () => {
               size="30"
               stroke="3"
               speed="1"
-              color="#EA580C"
+              color="#F97316"
             ></l-line-spinner>
           ) : (
             "Pay Now"
