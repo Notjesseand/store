@@ -108,7 +108,7 @@ const Page = ({ params }: { params: any }) => {
         </div>
       </div>
       {/*  */}
-      <p className="text-center text-xl py-14 font-montserrat font-semibold">
+      <p className="text-center text-xl py-14 px-4 font-montserrat font-semibold">
         Browse our{" "}
         <span className="text-orange-600 capitalize">
           {" "}

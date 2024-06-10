@@ -200,13 +200,13 @@ const Page = () => {
         </button>
       )}
 
-      {/* {cart.length == 0 && ( */}
+     
       <div className="px-5 sm:px-20 pt-1">
         <p className="text-center sm:text-lg">Add items to your cart</p>
         {/* @ts-ignore */}
         <Carousel product={""} onAddToCart={addToCart} />
       </div>
-      {/* )} */}
+    
       <Footer />
     </div>
   );
