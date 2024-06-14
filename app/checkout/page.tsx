@@ -15,6 +15,7 @@ interface CartItem {
   price: number;
   title: string;
 }
+const jaj = "";
 if (typeof window !== "undefined") {
   lineSpinner.register();
 }
