@@ -65,6 +65,8 @@ const Page = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
+  const jaja = ""
+
   // calculate the total price
   const calculatePrice = () =>
     cart.reduce((total, item) => total + item.price * item.quantity, 0);
