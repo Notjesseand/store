@@ -92,6 +92,8 @@ const Page = () => {
     );
   };
 
+  const gaga = ""
+
   // handle submit.
   const [submitted, setSubmitted] = useState(false);
   const handlePayment = () => {
