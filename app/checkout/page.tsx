@@ -29,6 +29,7 @@ const Page = () => {
     }
   }, []);
 
+  const jaja = ""
 
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
   const clearCart = () => {
