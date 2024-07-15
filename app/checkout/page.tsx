@@ -109,6 +109,8 @@ const Page = () => {
     }, 3000);
   };
 
+  const jaja = ""
+
   return (
     <div className="">
       <div className="bg-slate-50 sm:min-h-[45vh]">
