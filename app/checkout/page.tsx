@@ -109,6 +109,7 @@ const Page = () => {
     }, 3000);
   };
 
+  const jaja = ""
 
   return (
     <div className="">
