@@ -16,3 +16,5 @@ export async function fetchData(item: any) {
     console.error("Error fetching data:", error);
   }
 }
+
+const jaja = ""
