@@ -31,7 +31,7 @@ const Hero = () => {
           transition={{ duration: 1 }}
         >
           <p className="text-5xl sm:text-7xl lg:text-8xl font-bold px-6 sm:px-10 md:px-16">
-            Thugger&apos;s Store
+            Thugger&apos;s Store jaja
           </p>
           <p className="px-6 sm:px-10 md:px-16 text-2xl mt-5 ml-5 font-montserrat">
             Your home for everything
