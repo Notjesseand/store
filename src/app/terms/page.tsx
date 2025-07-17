@@ -14,7 +14,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">1. Introduction</h2>
         <p className="mb-4">
-          Welcome to [Your App Name]. These Terms and Conditions govern your use
+          Welcome to Thugger's Store. These Terms and Conditions govern your use
           of our website, products, and services. By accessing or using any part
           of the service, you agree to be bound by these Terms.
         </p>
@@ -36,7 +36,7 @@ export default function TermsPage() {
         <p className="mb-4">
           We offer refunds within 7 days of purchase for valid reasons. If you
           are not satisfied with your purchase, please contact us at
-          <strong> support@[yourdomain].com</strong>. Refunds are issued at our
+          <strong> terrymccathron@gmail.com</strong>. Refunds are issued at our
           discretion and may take up to 5–10 business days to process.
         </p>
 
@@ -52,7 +52,7 @@ export default function TermsPage() {
         </h2>
         <p className="mb-4">
           All content, logos, designs, and intellectual property on this site
-          are owned by [Your App Name] and may not be used without permission.
+          are owned by Thugger's Store and may not be used without permission.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -78,7 +78,7 @@ export default function TermsPage() {
         </h2>
         <p className="mb-4">
           If you have any questions about these Terms, please contact us at
-          <strong> support@[yourdomain].com</strong>.
+          <strong>terrymccathron@gmail.com</strong>.
         </p>
       </div>
       <Footer />
