@@ -14,9 +14,9 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">1. Introduction</h2>
         <p className="mb-4">
-          Welcome to Thugger's Store. These Terms and Conditions govern your use
-          of our website, products, and services. By accessing or using any part
-          of the service, you agree to be bound by these Terms.
+          Welcome to Thugger&apos;s Store. These Terms and Conditions govern
+          your use of our website, products, and services. By accessing or using
+          any part of the service, you agree to be bound by these Terms.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -52,7 +52,8 @@ export default function TermsPage() {
         </h2>
         <p className="mb-4">
           All content, logos, designs, and intellectual property on this site
-          are owned by Thugger's Store and may not be used without permission.
+          are owned by Thugger&apos;s Store and may not be used without
+          permission.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
